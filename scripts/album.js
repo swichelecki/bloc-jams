@@ -30,6 +30,25 @@ var albumMarconi = {
     
 };
 
+var albumBlackSabbath = {
+    title: 'Paranoid',
+    artist: 'Black Sabbath',
+    label: 'Vertigo Records',
+    year: '1970',
+    albumArtUrl: 'assets/images/album_covers/paranoid.jpg',
+    songs: [
+        { title: 'War Pigs', duration: '7.56' },
+        { title: 'Paranoid', duration: '2.48' },
+        { title: 'Planet Caravan', duration: '4.26' },
+        { title: 'Iron Man', duration: '5.55' },
+        { title: 'Electric Funeral', duration: '4.50' },
+        { title: 'Hand of Doom', duration: '7.08' },
+        { title: 'Rat Salad', duration: '2.30' },
+        { title: 'Fairies Wear Boots', duration: '6.14' }
+    ]
+    
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template = 
         '<tr class="album-view-song-item">'
@@ -42,15 +61,16 @@ var createSongRow = function(songNumber, songName, songLength) {
     
 };
 
-var setCurrentAlbum = function(album) {
     var albumTitle = document.getElementsByClassName('album-view-title')[0];
     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
     var albumImage = document.getElementsByClassName('album-cover-art')[0];
     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
-    
+
+var setCurrentAlbum = function(album) {
+  
     albumTitle.firstChild.nodeValue = album.title;
-    albumArtist.firstChild.nodevalue = album.artist;
+    albumArtist.firstChild.nodeValue = album.artist;
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
     albumImage.setAttribute('src', album.albumArtUrl);
     
@@ -63,4 +83,16 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+    
+    var albums = [albumPicasso, albumMarconi, albumBlackSabbath];
+    var index = 1;
+    albumImage.addEventListener('click', function(event){
+        setCurrentAlbum(albums[index]);
+        index++;
+        if (index == albums.length) {
+            index = 0;
+        }
+        
+    }); 
+    
 };
