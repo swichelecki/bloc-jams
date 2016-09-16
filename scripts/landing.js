@@ -40,8 +40,17 @@ window.onload = function() {
     var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
     
     window.addEventListener('scroll', function(event){
-      if (document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance) { animatePoints(pointsArray);
+        // if (something && somethingElse)
+      if ((document.documentElement.scrollTop || document.body.scrollTop) >= scrollDistance) { animatePoints(pointsArray);
         }
     });       
     
 }
+
+/*
+if (falsey) {
+    // would not run
+}
+
+falsey = null, undefined, false, "", 0
+truthy = anything that isn't falsey
